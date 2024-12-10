@@ -1,0 +1,78 @@
+<div class="container mt-5">
+  <h1 class="text-center">Kata : Conversion de Nombre en Chaîne</h1>
+
+  Ecrire un algorithme qui transforme une nombre (compris entre 0 et 100) en une chaîne de characters.
+  Cet algorithme doit suivre les règles suivantes :
+  <ul>
+    <li>Si le nombre est divisible par 3 ou contient 3, ajouter "FOO".</li>
+    <li>Si le nombre est divisible par 5 ou contient 5, ajouter "BAR".</li>
+    <li>Si le nombre contient 7, ajouter "QUIX".</li>
+    <li>Si aucune règle ne s'applique, retourner le nombre sous forme de chaîne.</li>
+  </ul>
+  Exemples :
+
+  <table>
+    <thead>
+      <tr>
+        <th>Input</th>
+        <th>Output</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>"1"</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>"FOOFOO"</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>"BARBAR"</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>"QUIX"</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>"FOO"</td>
+      </tr>
+      <tr>
+        <td>51</td>
+        <td>"FOOBAR"</td>
+      </tr>
+      <tr>
+        <td>53</td>
+        <td>"BARFOO"</td>
+      </tr>
+      <tr>
+        <td>33</td>
+        <td>"FOOFOOFOO"</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>"FOOBARBAR"</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="text-center">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Transformer
+      un nombre</button>
+  </div>
+</div>
+
+<!-- Inclure la modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <app-kata-modal></app-kata-modal>
+    </div>
+  </div>
+</div>
