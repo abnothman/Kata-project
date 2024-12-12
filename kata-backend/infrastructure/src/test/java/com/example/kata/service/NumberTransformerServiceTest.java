@@ -1,69 +1,106 @@
 package com.example.kata.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * test for {@link NumberTransformerService}
- */
 public class NumberTransformerServiceTest {
-    // NumberTransformerService instance
-    private final NumberTransformerService numberTransformerService = new NumberTransformerService();
+
+    private NumberTransformerService numberTransformerService;
+
+    @BeforeEach
+    void setUp() {
+        // Initialise le service avant chaque test
+        numberTransformerService = new NumberTransformerService();
+    }
+
+    
 
     /**
-     * test number division by three
+     * Teste la transformation de 9.
+     * Le résultat attendu est 'FOO'.
      */
     @Test
-    void testNumberDivisionByThree() {
-        assertEquals("FOO", numberTransformerService.transformNumber(9));
+    void shouldReturnFOOWhenInputIs9() {
+        String result = numberTransformerService.transformNumber(9);
+        assertEquals("FOO", result, "Le résultat devrait être 'FOO'.");
     }
 
     /**
-     * test number division by five
+     * Teste la transformation de 5
+     * Le résultat attendu est ''BARBAR'
      */
     @Test
-    void testNumberDivisionByFive() {
-        assertEquals("BAR", numberTransformerService.transformNumber(10));
+    void shouldReturnBARBARWhenInputIs5() {
+        String result = numberTransformerService.transformNumber(5);
+        assertEquals("BARBAR", result, "Le résultat devrait être 'BARBAR'.");
     }
 
     /**
-     * test number contains three
+     * Teste la transformation de 15
+     * Le résultat attendu est ''FOOBARBAR'
      */
     @Test
-    void testContainsThree() {
-        assertEquals("FOO", numberTransformerService.transformNumber(13));
+    void shouldReturnFOOBARBARWhenInputIs15() {
+        String result = numberTransformerService.transformNumber(15);
+        assertEquals("FOOBARBAR", result, "Le résultat devrait être 'FOOBARBAR'.");
     }
 
     /**
-     * test number contains five
+     * Teste la transformation de 3
+     * Le résultat attendu est ''FOOFOO'
      */
     @Test
-    void testContainsFive() {
-        assertEquals("BAR", numberTransformerService.transformNumber(59));
+    void shouldReturnFOOFOOWhenInputIs3() {
+        String result = numberTransformerService.transformNumber(3);
+        assertEquals("FOOFOO", result, "Le résultat devrait être 'FOOFOO'.");
     }
 
     /**
-     * test number contains seven
+     * Teste la transformation de 53
+     * Le résultat attendu est ''BARFOO'
      */
     @Test
-    void testContainsSeven() {
-        assertEquals("QUIX", numberTransformerService.transformNumber(17));
+    void shouldReturnBARFOOWhenInputIs53() {
+        String result = numberTransformerService.transformNumber(53);
+        assertEquals("BARFOO", result, "Le résultat devrait être 'BARFOO'.");
     }
 
     /**
-     * test complexe number
+     * Teste la transformation de 51
+     * Le résultat attendu est ''FOOBAR'
      */
     @Test
-    void testComplexNumber() {
-        assertEquals("FOOBARQUIXBAR", numberTransformerService.transformNumber(75));
+    void shouldReturnBARFOOWhenInputIs51() {
+        String result = numberTransformerService.transformNumber(51);
+        assertEquals("FOOBAR", result, "Le résultat devrait être 'FOOBAR'.");
     }
 
     /**
-     * test no rules applied
+     * Teste la transformation de 33
+     * Le résultat attendu est ''FOOFOOFOO'
      */
     @Test
-    void testNoRulesApplied() {
-        assertEquals("1", numberTransformerService.transformNumber(1));
+    void shouldReturnBARFOOWhenInputIs33() {
+        String result = numberTransformerService.transformNumber(33);
+        assertEquals("FOOFOOFOO", result, "Le résultat devrait être 'FOOFOOFOO'.");
+    }
+
+    /**
+     * Teste la transformation de 7
+     * Le résultat attendu est ''QUIX'
+     */
+    @Test
+    void shouldReturnQUIXWhenInputIs7() {
+        String result = numberTransformerService.transformNumber(7);
+        assertEquals("QUIX", result, "Le résultat devrait être 'QUIX'.");
+    }
+
+    // Test de cas où aucune transformation ne s'applique
+    @Test
+    void shouldReturnQUIXWhenInputIs1() {
+        String result = numberTransformerService.transformNumber(1);
+        assertEquals("1", result, "Le résultat devrait être '1'.");
     }
 }

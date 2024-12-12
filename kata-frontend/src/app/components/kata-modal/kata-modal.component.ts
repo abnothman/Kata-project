@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { KataService } from '../../services/kata.service';
 import { FormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-kata-modal',
   templateUrl: './kata-modal.component.html',
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule],
   providers: [KataService],
   styleUrls: ['./kata-modal.component.css'],
 })

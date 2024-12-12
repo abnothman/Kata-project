@@ -1,37 +1,77 @@
 package com.example.kata.service;
 
 import com.example.kata.domain.NumberTransformer;
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 /**
- * Service manage Number transformation
+ * Service for managing number transformations based on specific rules.
  */
 @Service
 public class NumberTransformerService implements NumberTransformer {
 
+    // Règles pour la vérification des chiffres
+    private static final Map<Integer, String> DIGIT_RULES = MapUtils.putAll(
+            new java.util.HashMap<>(),
+            new Object[][]{
+                    {'3', "FOO"},
+                    {'5', "BAR"},
+                    {'7', "QUIX"}
+            }
+    );
+
+    // Règles pour la divisibilité
+    private static final Map<Integer, String> DIVISIBILITY_RULES = MapUtils.putAll(
+            new java.util.HashMap<>(),
+            new Object[][]{
+                    {3, "FOO"},
+                    {5, "BAR"}
+            }
+    );
+
     /**
-     * transformNumber service implementation
-     * @param number
-     * @return String
+     * Transforms a number according to divisibility and digit presence rules.
+     *
+     * @param number the number to transform.
+     * @return the transformed string.
      */
     @Override
     public String transformNumber(int number) {
-        // init
+        // Initialisation du StringBuilder pour le résultat final.
         StringBuilder result = new StringBuilder();
 
-        // Vérification de divisibilité
-        if (number % 3 == 0) result.append("FOO");
-        if (number % 5 == 0) result.append("BAR");
+        // Vérification des règles de divisibilité
+        result.append(checkDivisibility(number));
 
         // Vérification des chiffres présents
+        result.append(checkDigits(number));
+
+        // Retourne le nombre si aucune règle ne s'applique
+        return result.length() > 0 ? result.toString() : String.valueOf(number);
+    }
+
+    /**
+     * Vérifie les règles de divisibilité.
+     */
+    private String checkDivisibility(int number) {
+        StringBuilder result = new StringBuilder();
+        DIVISIBILITY_RULES.forEach((key, value) -> {
+            if (number % key == 0) result.append(value);
+        });
+        return result.toString();
+    }
+
+    /**
+     * Vérifie les règles basées sur les chiffres.
+     */
+    private String checkDigits(int number) {
+        StringBuilder result = new StringBuilder();
         String numStr = String.valueOf(number);
         for (char c : numStr.toCharArray()) {
-            if (c == '3') result.append("FOO");
-            if (c == '5') result.append("BAR");
-            if (c == '7') result.append("QUIX");
+            result.append(DIGIT_RULES.getOrDefault(c, ""));
         }
-
-        // Si aucune règle ne s'applique
-        return result.length() > 0 ? result.toString() : numStr;
+        return result.toString();
     }
 }
